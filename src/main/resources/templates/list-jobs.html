@@ -11,6 +11,25 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <!-- TODO #3 - Use the same list display from search.html -->
+    <!--<div th:each="job: ${jobs}">-->
+        <!--<tr th:each="Map.Entry<String, String> job_element : job.entrySet()" >-->
+            <!--<td th:text="job_element.getKey()"></td>-->
+            <!--<td th:text="job_element.getValue()"></td>-->
+
+        <!--</tr>-->
+    <!--</div>-->
+
+    <div th:if="${jobs} and ${jobs.size()}">
+        <p th:text="${jobs.size()} + ' results'">${jobs.size}</p>
+        <table th:each="job: ${jobs}" class="job-listing">
+            <tr th:each="item : ${job}">
+                <!--<td><a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a></td>-->
+                <td th:text="${item.key}"></td>
+                <td th:text="${item.value}"></td>
+            </tr>
+        </table>
+
+    </div>
 
 </div>
 
