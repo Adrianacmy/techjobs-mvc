@@ -35,12 +35,22 @@
 
     <hr />
 
+
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
     <div th:if="${jobs} and ${jobs.size()}">
-        <p th:text="${jobs.size()} + ' results'">${jobs.size}</p>
+        <h3 th:text="${jobs.size()} + ' results'">${jobs.size}</h3>
         <table th:each="job: ${jobs}" class="job-listing">
             <tr th:each="item : ${job}">
-            <td th:text="${item.key}"></td>
+            <td th:if="${item.key.equals('name')}"
+               th:text="${#strings.capitalizeWords(item.key)}">
+            </td>
+            <!--else-->
+            <td th:unless="${item.key.equals('name')}">
+                <a
+                    th:href="@{/list/jobs(column=${item.key},value=${item.value})}"
+                    th:text="${#strings.capitalizeWords(item.key)}">
+                </a>
+            </td>
             <td th:text="${item.value}"></td>
             </tr>
         </table>

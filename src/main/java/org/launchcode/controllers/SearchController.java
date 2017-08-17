@@ -31,11 +31,16 @@ public class SearchController {
             model.addAttribute("columns", ListController.columnChoices);
             model.addAttribute("title", "Jobs with " + ListController.columnChoices.get(searchType) + ": " + searchTerm);
             model.addAttribute("jobs", jobs);
+            model.addAttribute("searchType", searchType);
+            model.addAttribute("searchTerm", searchTerm);
         }else{
             ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
             model.addAttribute("columns", ListController.columnChoices);
             model.addAttribute("title", "Jobs with " + ListController.columnChoices.get(searchType) + ": " + searchTerm);
             model.addAttribute("jobs", jobs);
+            model.addAttribute("searchType", searchType);
+            model.addAttribute("searchTerm", searchTerm);
+
         }
         return "search";
     }
